@@ -37,12 +37,14 @@ class Player():
 
 
 
-def redrawWindow():
+def redrawWindow(win, player):
     win.fill((255,255,255))
     pygame.display.update()
 
 def main():
     run = True
+
+    p = Player(50, 50, 100, 100, (0,255,0))
 
     while run:
         for event in pygame.event.get():
@@ -50,6 +52,9 @@ def main():
                 run = False
                 pygame.quit()
 
-        redrawWindow()
+        p.move()
+        redrawWindow(win, p)
+
+main()
 
 
