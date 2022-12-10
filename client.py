@@ -25,29 +25,28 @@ class Button:
         win.blit(text, (self.x - round(self.width/2) - round(text.get_width()/2)),
                  (self.y - round(self.height/2) - round(text.get_height()/2)))
 
+    def click(self, pos):
+        x1 = pos[0]
+        y1 = pos[1]
+
+        if self.x <= x1 <= self.x + self.width and self.y <= y1 <= self.height:
+            return True
+        else:
+            return False
+
+
 def redrawWindow(win, player, player2):
-    win.fill((255,255,255))
+    win.fill((255,255,255)) 
     player.draw(win)
     player2.draw(win)
     pygame.display.update()
 
+btns = [Button("Rock", 50, 500, (0,0,0)), Button("Scissors", 250, 500, (255,0,0)), 
+        Button("Paper", 450, 500, (0,255,0))]
+
 def main():
     run = True
-    n = Network()
-    p = n.getP()
-    clock = pygame.time.Clock()
-
-    while run: 
-        clock.tick(60)
-        p2 = n.send(p)
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                run = False
-                pygame.quit()
-
-       #p.move()
-        #redrawWindow(win, p, p2)
+    
 
 main()
 
