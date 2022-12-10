@@ -44,4 +44,7 @@ class Game:
             winner == 1
 
         return winner
-        
+
+    def resetWent(self):
+        self.p1Went == False
+        self.p2Went == False
