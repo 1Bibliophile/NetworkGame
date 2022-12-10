@@ -46,7 +46,34 @@ btns = [Button("Rock", 50, 500, (0,0,0)), Button("Scissors", 250, 500, (255,0,0)
 
 def main():
     run = True
-    
+    clock = pygame.time.Clock()
+    n = Network()
+    player = int(n.getP())
+    print("You are Player", player)
+
+    while run:
+        clock.tick(60)
+        try:
+            game = n.send("get")
+        except:
+            run = False
+            print("Couldn't get game")
+            break
+
+        if game.bothWent():
+            redrawWindow()
+            pygame.time.delay(200)
+
+            try: 
+                game = n.send("reset")
+            except:
+                run = False
+                print("Couldn't get game")
+                break
+
+            font = pygame.font.SysFont("comicsans", 90)
+            if (game.winner() == 1 and player == 1) or (game.winner() == 0 and player == 0):
+                text = font.render("You Won!", 1, (255,0,0))
 
 main()
 
